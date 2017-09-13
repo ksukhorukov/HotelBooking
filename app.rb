@@ -10,19 +10,15 @@ availabilities = [
 
 books = [
   { start_date: (Date.parse '01.01.2017'), end_date: (Date.parse '15.01.2017'), beds: 1 },
+  { start_date: (Date.parse '16.01.2017'), end_date: (Date.parse '30.01.2017'), beds: 1 }
 ]
 
 def get_rooms_with_certain_number_of_beds(availabilities, number_of_beds)
-  result = []
-  availabilities.each do |availability|
-    result << availability if availability[:beds] == number_of_beds
-  end
-  result
+  availabilities.select { |avlb| avlb[:beds] == number_of_beds }
 end
 
 def check_if_available(room, start_date, end_date)
-  return true if room[:start_date] <= start_date && room[:end_date] >= end_date
-  return false
+  room[:start_date] <= start_date && (room[:end_date] >= end_date || room[:end_date] == nil)
 end
 
 def reserve_room(availabilities, book, slot)
