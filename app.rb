@@ -14,7 +14,7 @@ books = [
 ]
 
 def get_rooms_with_certain_number_of_beds(availabilities, number_of_beds)
-  availabilities.select { |avlb| avlb[:beds] == number_of_beds }
+  availabilities.select { |avlb| avlb[:beds] >= number_of_beds }
 end
 
 def check_if_available(room, start_date, end_date)
