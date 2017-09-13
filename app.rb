@@ -1,15 +1,15 @@
 #!/usr/bin/env ruby
 
 require 'date'
-
 require 'pp'
 
 availabilities = [
-   { start_date: (Date.parse '01.01.2017'), end_date: (Date.parse '30.01.2017'), beds: 1 },
+   { start_date: (Date.parse '01.01.2017'), end_date: (Date.parse '30.01.2017'), beds: 2 },
 ]
 
 books = [
-  { start_date: (Date.parse '02.01.2017'), end_date: (Date.parse '15.01.2017'), beds: 1 },
+  { start_date: (Date.parse '01.01.2017'), end_date: (Date.parse '30.01.2017'), beds: 2 },
+  { start_date: (Date.parse '02.01.2017'), end_date: (Date.parse '15.01.2017'), beds: 2 },
   { start_date: (Date.parse '16.01.2017'), end_date: (Date.parse '20.01.2017'), beds: 1 }
 ]
 
