@@ -9,7 +9,7 @@ availabilities = [
 ]
 
 books = [
-  { start_date: (Date.parse '15.01.2017'), end_date: (Date.parse '29.01.2017'), beds: 1 },
+  { start_date: (Date.parse '01.01.2017'), end_date: (Date.parse '15.01.2017'), beds: 1 },
 ]
 
 def get_rooms_with_certain_number_of_beds(availabilities, number_of_beds)
@@ -46,8 +46,7 @@ def reserve_room(availabilities, book, slot)
 
   if slot[:end_date] == book[:end_date]
     availabilities << availability_1
-  else
-    availabilities << availability_1
+  elsif slot[:start_date] == book[:start_date]
     availabilities << availability_2
   end
 
