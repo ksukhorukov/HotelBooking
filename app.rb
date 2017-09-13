@@ -9,8 +9,8 @@ availabilities = [
 ]
 
 books = [
-  { start_date: (Date.parse '01.01.2017'), end_date: (Date.parse '15.01.2017'), beds: 1 },
-  { start_date: (Date.parse '16.01.2017'), end_date: (Date.parse '30.01.2017'), beds: 1 }
+  { start_date: (Date.parse '02.01.2017'), end_date: (Date.parse '15.01.2017'), beds: 1 },
+  { start_date: (Date.parse '16.01.2017'), end_date: (Date.parse '20.01.2017'), beds: 1 }
 ]
 
 def get_rooms_with_certain_number_of_beds(availabilities, number_of_beds)
@@ -44,6 +44,9 @@ def reserve_room(availabilities, book, slot)
     availabilities << availability_1
   elsif slot[:start_date] == book[:start_date]
     availabilities << availability_2
+  else
+    availabilities << availability_1
+    availabilities << availability_2
   end
 
   availabilities
@@ -51,10 +54,13 @@ def reserve_room(availabilities, book, slot)
 end
 
 books.each do |book|
-  slot = get_rooms_with_certain_number_of_beds(availabilities, book[:beds]).first
-  unless slot.empty?
-    if check_if_available(slot, book[:start_date], book[:end_date])
-      availabilities = reserve_room(availabilities, book, slot)
+  slots = get_rooms_with_certain_number_of_beds(availabilities, book[:beds])
+  unless slots.empty?
+    slots.each do |slot|
+      if check_if_available(slot, book[:start_date], book[:end_date])
+        availabilities = reserve_room(availabilities, book, slot)
+        break
+      end
     end
   end
 end
